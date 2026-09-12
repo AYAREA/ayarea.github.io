@@ -367,6 +367,7 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#vision"><span data-lang="en">Vision</span><span data-lang="es">Visión</span></a>
         <a href="#pathways"><span data-lang="en">Pathways</span><span data-lang="es">Caminos</span></a>
+        <a href="#contact"><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a>
         <button class="language" type="button" aria-label="Cambiar idioma a español" aria-pressed="false">ES</button>
       </nav>
     </div>
@@ -514,7 +515,7 @@
       </div>
     </section>
 
-    <section class="section closing">
+    <section class="section closing" id="contact">
       <div class="shell">
         <p class="eyebrow">
           <span data-lang="en">AYAREA is taking shape</span>
@@ -528,9 +529,9 @@
           <span data-lang="en">The first AYAREA journeys, learning spaces and encounters are being developed.</span>
           <span data-lang="es">Estamos desarrollando los primeros viajes, espacios de aprendizaje y encuentros de AYAREA.</span>
         </p>
-        <a class="cta" href="#top">
-          <span data-lang="en">Back to the beginning</span>
-          <span data-lang="es">Volver al inicio</span>
+        <a class="cta contact-link" href="#contact">
+          <span data-lang="en">Email AYAREA</span>
+          <span data-lang="es">Escribir a AYAREA</span>
         </a>
       </div>
     </section>
@@ -555,6 +556,21 @@
       languageButton.setAttribute('aria-label', spanish ? 'Switch language to English' : 'Cambiar idioma a español');
     };
     languageButton.addEventListener('click', () => setLanguage(root.classList.contains('lang-es') ? 'en' : 'es'));
+
+    const decode = (codes) => String.fromCharCode(...codes);
+    const contactAddress = [
+      decode([104, 105]),
+      decode([97, 121, 97, 114, 101, 97]),
+      decode([99, 111, 109])
+    ].join(decode([64])).replace('ayarea@com', 'ayarea.com');
+
+    document.querySelectorAll('.contact-link').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.href = decode([109, 97, 105, 108, 116, 111, 58]) + contactAddress;
+      });
+    });
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
