@@ -28,6 +28,35 @@
   const gold = '#c4a060';
   const ivory = '#f4efe6';
 
+  function goldMetal(rotation) {
+    // Warm bronze shadows and champagne highlights travel with each orbit.
+    if (typeof context.createConicGradient === 'function') {
+      const gradient = context.createConicGradient(rotation - Math.PI / 2, width / 2, height * .46);
+      [
+        [0, '#9b681f'],
+        [.12, '#e6b646'],
+        [.22, '#fff0a4'],
+        [.34, '#b67b25'],
+        [.47, '#f7d982'],
+        [.59, '#956119'],
+        [.72, '#e9bb58'],
+        [.84, '#fff0a4'],
+        [.94, '#a66f20'],
+        [1, '#9b681f']
+      ].forEach(([stop, color]) => gradient.addColorStop(stop, color));
+      return gradient;
+    }
+
+    const gradient = context.createLinearGradient(0, height * .46, width, height * .46);
+    gradient.addColorStop(0, '#9b681f');
+    gradient.addColorStop(.24, '#e6b646');
+    gradient.addColorStop(.43, '#fff0a4');
+    gradient.addColorStop(.62, '#b67b25');
+    gradient.addColorStop(.82, '#f7d982');
+    gradient.addColorStop(1, '#9b681f');
+    return gradient;
+  }
+
   function point(angle, rotation) {
     const tilt = state.tilt * Math.PI / 180;
     const x = Math.cos(angle) * Math.cos(tilt);
@@ -41,7 +70,7 @@
   }
 
   function drawRing(rotation, opacity, lineWidth, frontHalf = false) {
-    context.strokeStyle = gold;
+    context.strokeStyle = goldMetal(rotation);
     context.lineWidth = lineWidth;
     context.lineCap = 'round';
     context.globalAlpha = opacity * (frontHalf ? 1 : .44);
