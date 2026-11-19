@@ -2,8 +2,12 @@
   const languageButtons = [...document.querySelectorAll('[data-set-lang]')];
   const seasons = [...document.querySelectorAll('[data-season]')];
   const interestLinks = [...document.querySelectorAll('[data-interest-link]')];
+  const transitionOverlay = document.querySelector('.page-transition-overlay');
+  const transitionCanvas = transitionOverlay?.querySelector('canvas');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let language = 'es';
   let season = 'spring';
+  let transitioning = false;
 
   try {
     const saved = localStorage.getItem('ayarea-language');
@@ -42,6 +46,76 @@
     const href = `mailto:hi@ayarea.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     interestLinks.forEach(link => { link.href = href; });
   }
+
+  function copyLogoToTransition() {
+    const source = document.querySelector('.logo-stage canvas');
+    const context = transitionCanvas?.getContext('2d');
+    if (!source || !context) return;
+    const width = Math.min(innerWidth * .72, 420);
+    const height = width / 1.59;
+    const ratio = Math.min(devicePixelRatio || 1, 2);
+    transitionCanvas.width = Math.round(width * ratio);
+    transitionCanvas.height = Math.round(height * ratio);
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    context.clearRect(0, 0, width, height);
+    context.drawImage(source, 0, 0, width, height);
+  }
+
+  function wait(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+  }
+
+  function focusDestination(target) {
+    const focusTarget = target.matches('a, button, input, select, textarea, [tabindex]')
+      ? target
+      : target.querySelector('h1, h2, h3') || target;
+    const addedTabindex = !focusTarget.hasAttribute('tabindex')
+      && !focusTarget.matches('a, button, input, select, textarea');
+    if (addedTabindex) focusTarget.setAttribute('tabindex', '-1');
+    focusTarget.focus({ preventScroll: true });
+    if (addedTabindex) focusTarget.addEventListener('blur', () => focusTarget.removeAttribute('tabindex'), { once: true });
+  }
+
+  async function navigateWithTransition(link, target, url) {
+    if (transitioning || !transitionOverlay || !transitionCanvas) return;
+    transitioning = true;
+    copyLogoToTransition();
+    document.documentElement.classList.add('page-transitioning');
+
+    await wait(650);
+    document.documentElement.classList.add('page-transition-logo-visible');
+    await wait(400);
+
+    try { history.pushState(null, '', url.href); } catch (_) { /* Keep the current history entry if the URL cannot be updated. */ }
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    target.scrollIntoView({ block: 'start' });
+    document.documentElement.style.scrollBehavior = previousScrollBehavior;
+
+    await wait(400);
+    document.documentElement.classList.remove('page-transition-logo-visible');
+    await wait(300);
+    document.documentElement.classList.remove('page-transitioning');
+    await wait(650);
+    transitioning = false;
+    focusDestination(target);
+  }
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.classList.contains('skip-link') || link.target === '_blank' || link.hasAttribute('download')) return;
+    if (document.documentElement.classList.contains('intro-loading')) return;
+
+    const url = new URL(link.href, location.href);
+    if (url.pathname !== location.pathname || url.search !== location.search || !url.hash || url.hash === location.hash) return;
+    const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!target) return;
+
+    if (reducedMotion.matches) return;
+    event.preventDefault();
+    navigateWithTransition(link, target, url);
+  });
 
   async function runLogoIntro() {
     const html = document.documentElement;
