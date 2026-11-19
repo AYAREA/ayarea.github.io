@@ -7,18 +7,16 @@
   --r-nav-contact-x: 79.840%; --r-nav-contact-y: 5.530%; --r-nav-contact-w: 7.480%; --r-nav-contact-h: 4.250%;
   --r-language-x: 91.810%; --r-language-y: 5.420%; --r-language-w: 6.580%; --r-language-h: 4.460%;
   --r-hero-landscape-x: 0.000%; --r-hero-landscape-y: 16.470%; --r-hero-landscape-w: 100.000%; --r-hero-landscape-h: 32.090%;
-  --r-hero-intro-title-x: 3.470%; --r-hero-intro-title-y: 21.250%; --r-hero-intro-title-w: 21.230%; --r-hero-intro-title-h: 4.460%;
-  --r-hero-intro-title-cap: 11px; --r-hero-intro-title-font: 17px;
-  --r-hero-intro-x: 3.650%; --r-hero-intro-y: 25.720%; --r-hero-intro-w: 19.740%; --r-hero-intro-h: 8.500%;
+  --r-hero-intro-x: 3.650%; --r-hero-intro-y: 21.250%; --r-hero-intro-w: 25.500%; --r-hero-intro-h: 8.500%;
   --r-hero-intro-cap: 14px; --r-hero-intro-font: 20px;
   --r-hero-title-x: 3.410%; --r-hero-title-y: 37.410%; --r-hero-title-w: 40.970%; --r-hero-title-h: 9.670%;
   --r-hero-title-cap: 74px; --r-hero-title-font: 106px; --r-hero-title-family: 'Cormorant Upright'; --r-hero-title-weight: 400;
   --r-hero-subtitle-x: 49.940%; --r-hero-subtitle-y: 40.910%; --r-hero-subtitle-w: 45.160%; --r-hero-subtitle-h: 5.100%;
   --r-hero-subtitle-cap: 22px; --r-hero-subtitle-font: 32px;
-  --r-trip-panel-x: 0.000%; --r-trip-panel-y: 48.570%; --r-trip-panel-w: 100.000%; --r-trip-panel-h: 34.330%;
+  --r-trip-panel-x: 0.000%; --r-trip-panel-y: 48.570%; --r-trip-panel-w: 100.000%; --r-trip-panel-h: 35.330%;
   --r-guide-title-x: 4.010%; --r-guide-title-y: 50.480%; --r-guide-title-w: 25.120%; --r-guide-title-h: 12.010%;
   --r-guide-title-cap: 25px; --r-guide-title-font: 37px;
-  --r-guide-body-x: 4.010%; --r-guide-body-y: 65.890%; --r-guide-body-w: 24.220%; --r-guide-body-h: 13.180%;
+  --r-guide-body-x: 4.010%; --r-guide-body-y: 64.890%; --r-guide-body-w: 24.220%; --r-guide-body-h: 13.180%;
   --r-guide-body-cap: 14px; --r-guide-body-font: 21px;
   --r-facts-title-x: 33.250%; --r-facts-title-y: 51.220%; --r-facts-title-w: 19.740%; --r-facts-title-h: 3.190%;
   --r-facts-title-cap: 12px; --r-facts-title-font: 18px;
@@ -46,18 +44,18 @@
   --r-interest-action-x: 64.290%; --r-interest-action-y: 65.890%; --r-interest-action-w: 31.760%; --r-interest-action-h: 7.010%;
   --r-interest-note-x: 64.410%; --r-interest-note-y: 74.810%; --r-interest-note-w: 31.760%; --r-interest-note-h: 3.610%;
   --r-interest-note-cap: 15px; --r-interest-note-font: 22px;
-  --r-future-band-x: 0.000%; --r-future-band-y: 82.890%; --r-future-band-w: 100.000%; --r-future-band-h: 17.110%;
-  --r-future-title-x: 2.570%; --r-future-title-y: 85.330%; --r-future-title-w: 23.330%; --r-future-title-h: 10.200%;
+  --r-future-band-x: 0.000%; --r-future-band-y: 83.890%; --r-future-band-w: 100.000%; --r-future-band-h: 16.110%;
+  --r-future-title-x: 2.570%; --r-future-title-y: 86.330%; --r-future-title-w: 23.330%; --r-future-title-h: 10.200%;
   --r-future-title-cap: 28px; --r-future-title-font: 41px;
-  --r-canarias-landscape-x: 25.720%; --r-canarias-landscape-y: 82.890%; --r-canarias-landscape-w: 37.080%; --r-canarias-landscape-h: 17.110%;
-  --r-brittany-landscape-x: 62.800%; --r-brittany-landscape-y: 82.890%; --r-brittany-landscape-w: 37.200%; --r-brittany-landscape-h: 17.110%;
-  --r-canarias-title-x: 32.890%; --r-canarias-title-y: 89.480%; --r-canarias-title-w: 16.150%; --r-canarias-title-h: 4.990%;
+  --r-canarias-landscape-x: 25.720%; --r-canarias-landscape-y: 83.890%; --r-canarias-landscape-w: 37.080%; --r-canarias-landscape-h: 16.110%;
+  --r-brittany-landscape-x: 62.800%; --r-brittany-landscape-y: 83.890%; --r-brittany-landscape-w: 37.200%; --r-brittany-landscape-h: 16.110%;
+  --r-canarias-title-x: 32.890%; --r-canarias-title-y: 90.480%; --r-canarias-title-w: 16.150%; --r-canarias-title-h: 4.990%;
   --r-canarias-title-cap: 25px; --r-canarias-title-font: 36px;
-  --r-canarias-state-x: 33.190%; --r-canarias-state-y: 94.470%; --r-canarias-state-w: 15.550%; --r-canarias-state-h: 3.190%;
+  --r-canarias-state-x: 33.190%; --r-canarias-state-y: 95.470%; --r-canarias-state-w: 15.550%; --r-canarias-state-h: 3.190%;
   --r-canarias-state-cap: 5px; --r-canarias-state-font: 8px;
-  --r-brittany-title-x: 71.770%; --r-brittany-title-y: 89.480%; --r-brittany-title-w: 25.120%; --r-brittany-title-h: 4.990%;
+  --r-brittany-title-x: 71.770%; --r-brittany-title-y: 90.480%; --r-brittany-title-w: 25.120%; --r-brittany-title-h: 4.990%;
   --r-brittany-title-cap: 33px; --r-brittany-title-font: 48px;
-  --r-brittany-state-x: 75.960%; --r-brittany-state-y: 94.690%; --r-brittany-state-w: 6.580%; --r-brittany-state-h: 3.190%;
+  --r-brittany-state-x: 75.960%; --r-brittany-state-y: 95.690%; --r-brittany-state-w: 6.580%; --r-brittany-state-h: 3.190%;
   --r-brittany-state-cap: 29px; --r-brittany-state-font: 42px;
 }
 
@@ -69,7 +67,6 @@
 .r-nav-contact { position: absolute; left: var(--r-nav-contact-x); top: var(--r-nav-contact-y); width: var(--r-nav-contact-w); height: var(--r-nav-contact-h); }
 .r-language { position: absolute; left: var(--r-language-x); top: var(--r-language-y); width: var(--r-language-w); height: var(--r-language-h); }
 .r-hero-landscape { position: absolute; left: var(--r-hero-landscape-x); top: var(--r-hero-landscape-y); width: var(--r-hero-landscape-w); height: var(--r-hero-landscape-h); }
-.r-hero-intro-title { position: absolute; left: var(--r-hero-intro-title-x); top: var(--r-hero-intro-title-y); width: var(--r-hero-intro-title-w); height: var(--r-hero-intro-title-h); }
 .r-hero-intro { position: absolute; left: var(--r-hero-intro-x); top: var(--r-hero-intro-y); width: var(--r-hero-intro-w); height: var(--r-hero-intro-h); }
 .r-hero-title { position: absolute; left: var(--r-hero-title-x); top: var(--r-hero-title-y); width: var(--r-hero-title-w); height: var(--r-hero-title-h); }
 .r-hero-subtitle { position: absolute; left: var(--r-hero-subtitle-x); top: var(--r-hero-subtitle-y); width: var(--r-hero-subtitle-w); height: var(--r-hero-subtitle-h); }
