@@ -24,6 +24,7 @@
   let frame = 0;
   let previous = 0;
   let visible = true;
+  let transitioning = false;
   let paused = reducedMotion.matches;
   let motionOverride = false;
   const gold = '#c4a060';
@@ -166,7 +167,7 @@
     cancelAnimationFrame(frame);
     frame = 0;
     previous = 0;
-    const shouldAnimate = !paused && (!reducedMotion.matches || motionOverride) && visible && !document.hidden;
+    const shouldAnimate = !paused && (!reducedMotion.matches || motionOverride) && (visible || transitioning) && !document.hidden;
     button.setAttribute('aria-pressed', String(paused));
     button.setAttribute('aria-label', paused ? 'Reanudar animación del logo' : 'Pausar animación del logo');
     button.querySelector('[data-lang="es"]').textContent = paused ? 'Reanudar animación del logo' : 'Pausar animación del logo';
@@ -196,6 +197,10 @@
       paused = true;
       motionOverride = false;
     }
+    sync();
+  });
+  document.addEventListener('ayarea:transition', event => {
+    transitioning = Boolean(event.detail?.active);
     sync();
   });
   document.addEventListener('visibilitychange', sync);

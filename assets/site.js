@@ -5,9 +5,11 @@
   const transitionOverlay = document.querySelector('.page-transition-overlay');
   const transitionCanvas = transitionOverlay?.querySelector('canvas');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const logoCanvas = document.querySelector('.logo-stage canvas');
   let language = 'es';
   let season = 'spring';
   let transitioning = false;
+  let logoMirrorFrame = 0;
 
   try {
     const saved = localStorage.getItem('ayarea-language');
@@ -48,9 +50,8 @@
   }
 
   function copyLogoToTransition() {
-    const source = document.querySelector('.logo-stage canvas');
     const context = transitionCanvas?.getContext('2d');
-    if (!source || !context) return;
+    if (!logoCanvas || !context) return;
     const width = Math.min(innerWidth * .72, 420);
     const height = width / 1.59;
     const ratio = Math.min(devicePixelRatio || 1, 2);
@@ -58,7 +59,28 @@
     transitionCanvas.height = Math.round(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
     context.clearRect(0, 0, width, height);
-    context.drawImage(source, 0, 0, width, height);
+    context.drawImage(logoCanvas, 0, 0, width, height);
+  }
+
+  function mirrorLiveLogo() {
+    const context = transitionCanvas?.getContext('2d');
+    if (!logoCanvas || !context) return;
+    const width = transitionCanvas.width / Math.min(devicePixelRatio || 1, 2);
+    const height = transitionCanvas.height / Math.min(devicePixelRatio || 1, 2);
+    context.clearRect(0, 0, width, height);
+    context.drawImage(logoCanvas, 0, 0, width, height);
+    logoMirrorFrame = requestAnimationFrame(mirrorLiveLogo);
+  }
+
+  function setLogoTransitionActive(active) {
+    document.dispatchEvent(new CustomEvent('ayarea:transition', { detail: { active } }));
+    if (active) {
+      cancelAnimationFrame(logoMirrorFrame);
+      mirrorLiveLogo();
+    } else {
+      cancelAnimationFrame(logoMirrorFrame);
+      logoMirrorFrame = 0;
+    }
   }
 
   function wait(milliseconds) {
@@ -81,6 +103,7 @@
     transitioning = true;
     copyLogoToTransition();
     document.documentElement.classList.add('page-transitioning');
+    setLogoTransitionActive(true);
 
     await wait(650);
     document.documentElement.classList.add('page-transition-logo-visible');
@@ -98,6 +121,7 @@
     document.documentElement.classList.remove('page-transitioning');
     await wait(650);
     transitioning = false;
+    setLogoTransitionActive(false);
     focusDestination(target);
   }
 
